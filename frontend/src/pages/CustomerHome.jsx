@@ -46,33 +46,102 @@ export default function CustomerHome() {
     <div className="min-h-screen bg-brand-dark">
       <Navbar />
 
-      {/* ═══════════════════════════════════════
-          FULL SCREEN HERO — burger hero image
-      ═══════════════════════════════════════ */}
+      {/* ═══════════ HERO ═══════════ */}
       <div className="relative pt-16">
-
-        {/* Full screen hero image */}
         <div
-          className="relative w-full flex items-center justify-center overflow-hidden"
-          style={{ minHeight: '92vh' }}
+          className="relative w-full overflow-hidden"
+          style={{ minHeight: '100svh' }}
         >
-          {/* THE HERO IMAGE — full bleed */}
+          {/* Hero background image */}
           <img
             src="/hero-bg.jpg"
             alt="Freddan Fully Loaded"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center center' }}
           />
 
-          {/* Gradient overlays — top + bottom fade to dark */}
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-transparent to-brand-dark" />
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-brand-dark/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/50" />
 
-          {/* Very subtle dark center tint so text is readable */}
-          <div className="absolute inset-0 bg-brand-dark/20" />
+          {/* ── MOBILE LAYOUT ── */}
+          <div className="relative z-10 flex flex-col items-center justify-between h-full px-4 md:hidden"
+            style={{ minHeight: '100svh', paddingTop: '1.5rem', paddingBottom: '2rem' }}>
 
-          {/* Hero text content — sits over image */}
-          <div className="relative z-10 text-center px-4 flex flex-col items-center justify-end h-full pb-20 pt-32"
-            style={{ minHeight: '92vh' }}>
+            {/* Top: badge */}
+            <div className="inline-flex items-center gap-2 bg-black/60 backdrop-blur border border-brand-red/50 rounded-full px-4 py-1.5 mt-2">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
+              <span className="text-white font-bold tracking-wider text-xs uppercase">Now Open · West Mambalam</span>
+            </div>
+
+            {/* Middle: hero image large — the burger image IS the brand, show it clearly */}
+            <div className="flex-1 flex items-center justify-center w-full py-4">
+              {/* Intentionally empty — background image is the star on mobile */}
+            </div>
+
+            {/* Bottom content block */}
+            <div className="w-full flex flex-col items-center gap-4">
+
+              {/* Headline */}
+              <div className="text-center">
+                <h2 className="font-display text-3xl text-white leading-tight tracking-wide"
+                  style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9)' }}>
+                  Chennai's Most
+                </h2>
+                <h2 className="font-display text-4xl text-brand-gold leading-tight tracking-wide"
+                  style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9)' }}>
+                  LOADED Experience
+                </h2>
+              </div>
+
+              {/* Tags — single line, scrollable */}
+              <div className="flex gap-2 overflow-x-auto w-full justify-center flex-wrap px-2">
+                {['🔥 Chicken', '🍟 Fries', '🍔 Burgers', '🥤 Drinks', '🥟 Momos'].map(tag => (
+                  <span key={tag}
+                    className="flex-shrink-0 bg-black/50 backdrop-blur border border-white/20 text-gray-200 text-xs font-semibold px-3 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTA buttons — side by side on mobile */}
+              <div className="flex gap-3 w-full">
+                <a href="#menu"
+                  className="flex-1 flex items-center justify-center gap-2 bg-brand-red hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-base shadow-xl shadow-brand-red/40 active:scale-95 transition-all">
+                  🍗 Order Now
+                </a>
+                <a href="tel:8608227548"
+                  className="flex-1 flex items-center justify-center gap-2 border-2 border-white/30 bg-black/40 text-white font-bold py-3.5 rounded-xl text-base active:scale-95 transition-all">
+                  <Phone size={16} /> Call Us
+                </a>
+              </div>
+
+              {/* Stats — compact row */}
+              <div className="flex items-center justify-center gap-6 w-full pb-2">
+                {[
+                  { value: '35+', label: 'Items' },
+                  { value: '⭐ 4.8', label: 'Rating' },
+                  { value: '🔥', label: 'Fresh' },
+                ].map(({ value, label }) => (
+                  <div key={label} className="text-center">
+                    <div className="font-display text-xl text-brand-gold"
+                      style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}>{value}</div>
+                    <div className="text-gray-300 text-xs font-bold tracking-widest uppercase">{label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Scroll hint */}
+              <a href="#menu" className="flex flex-col items-center gap-0.5 text-gray-400 animate-bounce pb-1">
+                <span className="text-xs font-semibold tracking-widest uppercase">Explore Menu</span>
+                <ChevronDown size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* ── DESKTOP LAYOUT ── */}
+          <div className="relative z-10 hidden md:flex flex-col items-center justify-end h-full px-4 text-center pb-20 pt-32"
+            style={{ minHeight: '100svh' }}>
 
             {/* Live badge */}
             <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur border border-brand-red/50 rounded-full px-5 py-2 mb-6">
@@ -80,8 +149,7 @@ export default function CustomerHome() {
               <span className="text-white font-bold tracking-[0.2em] text-xs uppercase">Now Open • West Mambalam, Chennai</span>
             </div>
 
-            {/* Tagline */}
-            <h2 className="font-display text-3xl md:text-5xl text-white tracking-wider mb-3 drop-shadow-2xl"
+            <h2 className="font-display text-4xl md:text-5xl text-white tracking-wider mb-3 drop-shadow-2xl"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
               Chennai's Most <span className="text-brand-gold">Loaded</span> Experience
             </h2>
@@ -91,38 +159,30 @@ export default function CustomerHome() {
               🔥 Crispy Chicken &nbsp;•&nbsp; 🍟 Loaded Fries &nbsp;•&nbsp; 🍔 Burgers &nbsp;•&nbsp; 🥤 Drinks
             </p>
 
-            {/* CTA buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-              <a
-                href="#menu"
-                className="btn-primary px-10 py-4 rounded-full text-lg flex items-center gap-2 shadow-2xl shadow-brand-red/50 hover:scale-105 transition-transform"
-              >
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <a href="#menu"
+                className="btn-primary px-10 py-4 rounded-full text-lg flex items-center gap-2 shadow-2xl shadow-brand-red/50 hover:scale-105 transition-transform">
                 🍗 Order Now
               </a>
-              <a
-                href="tel:8608227548"
-                className="border-2 border-white/40 bg-black/40 backdrop-blur text-white hover:border-brand-gold hover:text-brand-gold font-bold px-10 py-4 rounded-full text-lg transition-all flex items-center gap-2"
-              >
+              <a href="tel:8608227548"
+                className="border-2 border-white/40 bg-black/40 backdrop-blur text-white hover:border-brand-gold hover:text-brand-gold font-bold px-10 py-4 rounded-full text-lg transition-all flex items-center gap-2">
                 <Phone size={18} /> Call Us
               </a>
             </div>
 
-            {/* Stats row */}
-            <div className="flex items-center justify-center gap-8 md:gap-16 mb-8">
+            <div className="flex items-center justify-center gap-16 mb-8">
               {[
                 { value: '35+', label: 'Menu Items' },
                 { value: '⭐ 4.8', label: 'Rating' },
                 { value: '🔥 Hot', label: 'Always Fresh' },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center">
-                  <div className="font-display text-2xl text-brand-gold drop-shadow-lg">{value}</div>
-                  <div className="text-gray-300 text-xs font-bold tracking-widest uppercase mt-1"
-                    style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>{label}</div>
+                  <div className="font-display text-3xl text-brand-gold drop-shadow-lg">{value}</div>
+                  <div className="text-gray-300 text-xs font-bold tracking-widest uppercase mt-1">{label}</div>
                 </div>
               ))}
             </div>
 
-            {/* Scroll indicator */}
             <a href="#menu" className="flex flex-col items-center gap-1 text-gray-400 hover:text-brand-gold transition-colors animate-bounce">
               <span className="text-xs font-semibold tracking-widest uppercase">Explore Menu</span>
               <ChevronDown size={20} />
@@ -131,9 +191,7 @@ export default function CustomerHome() {
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════
-          CATEGORY FILTER BAR
-      ═══════════════════════════════════════ */}
+      {/* ═══════════ CATEGORY FILTER ═══════════ */}
       <div id="menu" className="sticky top-16 z-40 bg-brand-dark/96 backdrop-blur-md border-b border-brand-smoke">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
@@ -148,17 +206,16 @@ export default function CustomerHome() {
                 }`}
               >
                 <span>{CATEGORY_EMOJIS[cat]}</span>
-                <span>{cat === 'ALL' ? 'All Items' : cat}</span>
+                <span className="hidden sm:inline">{cat === 'ALL' ? 'All Items' : cat}</span>
+                <span className="sm:hidden">{cat === 'ALL' ? 'All' : cat.split(' ')[0]}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════
-          MENU GRID
-      ═══════════════════════════════════════ */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      {/* ═══════════ MENU GRID ═══════════ */}
+      <div className="max-w-6xl mx-auto px-4 py-6">
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(9)].map((_, i) => (
@@ -167,24 +224,24 @@ export default function CustomerHome() {
           </div>
         ) : activeCategory === 'ALL' ? (
           Object.entries(groupedByCategory).map(([cat, items]) => (
-            <div key={cat} className="mb-12">
-              <div className="flex items-center gap-3 mb-5">
-                <span className="text-3xl">{CATEGORY_EMOJIS[cat]}</span>
-                <h2 className="font-display text-3xl text-white tracking-wider">{cat}</h2>
+            <div key={cat} className="mb-10">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">{CATEGORY_EMOJIS[cat]}</span>
+                <h2 className="font-display text-2xl md:text-3xl text-white tracking-wider">{cat}</h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-brand-smoke to-transparent ml-2" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                 {items.map(item => <MenuCard key={item.id} item={item} />)}
               </div>
             </div>
           ))
         ) : (
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-3xl">{CATEGORY_EMOJIS[activeCategory]}</span>
-              <h2 className="font-display text-3xl text-white tracking-wider">{activeCategory}</h2>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-2xl">{CATEGORY_EMOJIS[activeCategory]}</span>
+              <h2 className="font-display text-2xl md:text-3xl text-white tracking-wider">{activeCategory}</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {filtered.map(item => <MenuCard key={item.id} item={item} />)}
             </div>
             {filtered.length === 0 && (
@@ -194,15 +251,11 @@ export default function CustomerHome() {
         )}
       </div>
 
-      {/* ═══════════════════════════════════════
-          FLOATING CART
-      ═══════════════════════════════════════ */}
+      {/* ═══════════ FLOATING CART ═══════════ */}
       {totalItems > 0 && (
         <div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4 animate-slide-up">
-          <Link
-            to="/cart"
-            className="flex items-center justify-between bg-brand-red hover:bg-red-700 text-white rounded-2xl px-6 py-4 w-full max-w-sm shadow-2xl shadow-brand-red/50 transition-all active:scale-95 animate-pulse-red"
-          >
+          <Link to="/cart"
+            className="flex items-center justify-between bg-brand-red hover:bg-red-700 text-white rounded-2xl px-6 py-4 w-full max-w-sm shadow-2xl shadow-brand-red/50 transition-all active:scale-95 animate-pulse-red">
             <div className="flex items-center gap-2">
               <ShoppingCart size={20} />
               <span className="bg-white text-brand-red text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">{totalItems}</span>
@@ -213,15 +266,11 @@ export default function CustomerHome() {
         </div>
       )}
 
-      {/* ═══════════════════════════════════════
-          FOOTER
-      ═══════════════════════════════════════ */}
-      <footer className="border-t border-brand-smoke mt-8 py-12 bg-brand-charcoal">
+      {/* ═══════════ FOOTER ═══════════ */}
+      <footer className="border-t border-brand-smoke mt-8 py-10 bg-brand-charcoal">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <img
-            src="/logo.jpg"
-            alt="Freddan Fully Loaded"
-            className="h-20 w-auto object-contain mx-auto mb-4"
+          <img src="/logo.jpg" alt="Freddan Fully Loaded"
+            className="h-16 md:h-20 w-auto object-contain mx-auto mb-4"
             style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.5))' }}
           />
           <p className="text-gray-400 text-sm max-w-sm mx-auto mb-2 leading-relaxed">
@@ -229,14 +278,12 @@ export default function CustomerHome() {
             near Duraiswamy Subway, West Mambalam,<br />
             Chennai – 600033
           </p>
-          <a
-            href="https://maps.google.com/?q=Freddan+Fully+Loaded+West+Mambalam+Chennai"
+          <a href="https://maps.google.com/?q=Freddan+Fully+Loaded+West+Mambalam+Chennai"
             target="_blank" rel="noreferrer"
-            className="text-brand-gold hover:underline text-sm inline-flex items-center gap-1 mt-1"
-          >
+            className="text-brand-gold hover:underline text-sm inline-flex items-center gap-1 mt-1">
             <MapPin size={13} /> Get Directions on Google Maps
           </a>
-          <div className="mt-8 pt-4 border-t border-brand-smoke/50 text-gray-800 text-xs">
+          <div className="mt-6 pt-4 border-t border-brand-smoke/50 text-gray-800 text-xs">
             <Link to="/owner/login" className="hover:text-gray-600 transition-colors">Owner Access</Link>
           </div>
         </div>
