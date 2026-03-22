@@ -24,18 +24,18 @@ export default function OwnerLayout({ children }) {
 
   return (
     <div className="min-h-screen bg-brand-dark flex">
-      {/* Mobile overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/60 z-40 md:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
       <aside className={`fixed top-0 left-0 h-full w-64 bg-brand-charcoal border-r border-brand-smoke z-50 flex flex-col transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:relative md:flex`}>
-        <div className="p-4 border-b border-brand-smoke">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Freddan" className="h-12 w-auto object-contain rounded-lg" />
-            <div className="text-brand-gold text-xs font-bold tracking-wider mt-0.5">Owner Panel</div>
+        {/* Logo */}
+        <div className="p-5 border-b border-brand-smoke">
+          <div className="bg-white rounded-xl px-4 py-2.5">
+            <img src="/logo.png" alt="Freddan Fully Loaded" className="h-10 w-auto object-contain" />
           </div>
+          <p className="text-brand-gold text-xs font-bold tracking-wider mt-2 text-center uppercase">Owner Panel</p>
         </div>
 
         {/* Nav */}
@@ -73,13 +73,16 @@ export default function OwnerLayout({ children }) {
         </div>
       </aside>
 
-      {/* Main */}
+      {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
+        {/* Mobile topbar */}
         <div className="md:hidden bg-brand-charcoal border-b border-brand-smoke px-4 py-2 flex items-center gap-3">
           <button onClick={() => setSidebarOpen(true)} className="text-gray-400 hover:text-white">
             <Menu size={24} />
           </button>
-          <img src="/logo.png" alt="Freddan" className="h-10 w-auto object-contain rounded-lg" />
+          <div className="bg-white rounded-lg px-3 py-1">
+            <img src="/logo.png" alt="Freddan" className="h-8 w-auto object-contain" />
+          </div>
         </div>
 
         <main className="flex-1 p-6 overflow-auto">

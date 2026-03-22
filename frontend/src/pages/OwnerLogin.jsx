@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { Eye, EyeOff } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-// Simple hardcoded owner auth — replace with JWT later
 const OWNER_USERNAME = 'freddan'
 const OWNER_PASSWORD = 'freddan@2024'
 
@@ -31,14 +30,13 @@ export default function OwnerLogin() {
   return (
     <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
       <div className="w-full max-w-sm animate-fade-in">
-
-        {/* Logo */}
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="Freddan" className="h-28 w-auto object-contain mx-auto mb-4 rounded-xl shadow-xl" />
-          <p className="text-brand-gold font-bold tracking-widest text-sm uppercase mt-1">Owner Panel</p>
+          <div className="inline-block bg-white rounded-2xl px-6 py-4 mb-5 shadow-xl shadow-brand-red/30">
+            <img src="/logo.png" alt="Freddan Fully Loaded" className="h-20 w-auto object-contain" />
+          </div>
+          <p className="text-brand-gold font-bold tracking-widest text-sm uppercase">Owner Panel</p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleLogin} className="card p-6 space-y-4">
           <div>
             <label className="text-gray-400 text-sm font-semibold mb-1.5 block">Username</label>
@@ -70,7 +68,6 @@ export default function OwnerLogin() {
               </button>
             </div>
           </div>
-
           <button
             type="submit"
             disabled={loading}
