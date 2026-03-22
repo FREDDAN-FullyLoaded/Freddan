@@ -58,7 +58,7 @@ export default function CustomerHome() {
         >
           {/* THE HERO IMAGE — full bleed */}
           <img
-            src="/hero.jpg"
+            src="/hero-bg.jpg"
             alt="Freddan Fully Loaded"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -219,7 +219,7 @@ export default function CustomerHome() {
       <footer className="border-t border-brand-smoke mt-8 py-12 bg-brand-charcoal">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <img
-            src="/logo.png"
+            src="/logo.jpg"
             alt="Freddan Fully Loaded"
             className="h-20 w-auto object-contain mx-auto mb-4"
             style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.5))' }}

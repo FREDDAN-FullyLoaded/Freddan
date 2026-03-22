@@ -14,7 +14,7 @@ export default function Navbar() {
         {/* Logo — dark bg blends directly */}
         <Link to="/" className="flex items-center">
           <img
-            src="/logo.png"
+            src="/logo.jpg"
             alt="Freddan Fully Loaded"
             className="h-14 w-auto object-contain"
           />

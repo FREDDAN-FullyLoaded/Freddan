@@ -32,7 +32,7 @@ export default function OwnerLogin() {
       <div className="w-full max-w-sm animate-fade-in">
         <div className="text-center mb-8">
           <img
-            src="/logo.png"
+            src="/logo.jpg"
             alt="Freddan Fully Loaded"
             className="h-28 w-auto object-contain mx-auto mb-3"
             style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.6))' }}

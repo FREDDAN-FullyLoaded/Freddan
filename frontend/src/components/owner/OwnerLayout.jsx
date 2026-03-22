@@ -32,7 +32,7 @@ export default function OwnerLayout({ children }) {
         {/* Logo */}
         <div className="p-4 border-b border-brand-smoke flex flex-col items-center">
           <img
-            src="/logo.png"
+            src="/logo.jpg"
             alt="Freddan"
             className="h-14 w-auto object-contain"
             style={{ filter: 'drop-shadow(0 0 12px rgba(200,16,46,0.5))' }}
@@ -70,7 +70,7 @@ export default function OwnerLayout({ children }) {
           <button onClick={() => setSidebarOpen(true)} className="text-gray-400 hover:text-white">
             <Menu size={24} />
           </button>
-          <img src="/logo.png" alt="Freddan" className="h-10 w-auto object-contain"
+          <img src="/logo.jpg" alt="Freddan" className="h-10 w-auto object-contain"
             style={{ filter: 'drop-shadow(0 0 8px rgba(200,16,46,0.5))' }} />
         </div>
         <main className="flex-1 p-6 overflow-auto">{children}</main>
