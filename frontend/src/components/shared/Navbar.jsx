@@ -9,28 +9,26 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur border-b border-brand-smoke">
-      <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-1 flex items-center justify-between">
 
-        {/* Logo — full wide logo, white background pill */}
+        {/* Logo — dark bg blends directly */}
         <Link to="/" className="flex items-center">
-          <div className="bg-white rounded-xl px-3 py-1.5 shadow-lg shadow-brand-red/20">
-            <img
-              src="/logo.png"
-              alt="Freddan Fully Loaded"
-              className="h-9 w-auto object-contain"
-            />
-          </div>
+          <img
+            src="/logo.png"
+            alt="Freddan Fully Loaded"
+            className="h-14 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-gray-300 hover:text-brand-gold font-semibold tracking-wide transition-colors">Menu</Link>
           <Link to="/cart">
-            <div className="flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition-colors">
+            <div className="flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl transition-colors shadow-lg shadow-brand-red/30">
               <ShoppingCart size={18} />
               <span>Cart</span>
               {totalItems > 0 && (
-                <span className="bg-brand-gold text-brand-dark text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="bg-brand-gold text-brand-dark text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center animate-bounce-in">
                   {totalItems}
                 </span>
               )}

@@ -31,9 +31,12 @@ export default function OwnerLogin() {
     <div className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
       <div className="w-full max-w-sm animate-fade-in">
         <div className="text-center mb-8">
-          <div className="inline-block bg-white rounded-2xl px-6 py-4 mb-5 shadow-xl shadow-brand-red/30">
-            <img src="/logo.png" alt="Freddan Fully Loaded" className="h-20 w-auto object-contain" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="Freddan Fully Loaded"
+            className="h-28 w-auto object-contain mx-auto mb-3"
+            style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.6))' }}
+          />
           <p className="text-brand-gold font-bold tracking-widest text-sm uppercase">Owner Panel</p>
         </div>
 
@@ -59,20 +62,14 @@ export default function OwnerLogin() {
                 onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
                 autoComplete="current-password"
               />
-              <button
-                type="button"
-                onClick={() => setShowPass(!showPass)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
-              >
+              <button type="button" onClick={() => setShowPass(!showPass)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">
                 {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full btn-primary py-3 rounded-lg text-base disabled:opacity-60"
-          >
+          <button type="submit" disabled={loading}
+            className="w-full btn-primary py-3 rounded-lg text-base disabled:opacity-60">
             {loading ? '🔓 Logging in...' : '🔐 Login as Owner'}
           </button>
         </form>

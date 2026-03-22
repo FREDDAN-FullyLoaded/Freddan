@@ -55,61 +55,52 @@ export default function CustomerHome() {
     <div className="min-h-screen bg-brand-dark">
       <Navbar />
 
-      {/* ═══════════════════════════════
-          HERO SECTION
-      ═══════════════════════════════ */}
+      {/* ═══════════ HERO ═══════════ */}
       <div className="relative pt-16 overflow-hidden">
 
-        {/* === Full-bleed food photo background === */}
+        {/* Full bleed food photo mosaic background */}
         <div className="absolute inset-0 z-0">
-          {/* 2×3 food photo grid */}
           <div className="grid grid-cols-3 grid-rows-2 h-full">
             {FOOD_IMAGES.map((src, i) => (
               <div key={i} className="overflow-hidden">
-                <img
-                  src={src}
-                  alt=""
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
+                <img src={src} alt="" className="w-full h-full object-cover" loading="eager" />
               </div>
             ))}
           </div>
-          {/* Multi-layer dark overlay */}
-          <div className="absolute inset-0 bg-brand-dark/80" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/40 to-brand-dark" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/70 via-transparent to-brand-dark/70" />
-          {/* Warm red center glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand-red/12 rounded-full blur-3xl pointer-events-none" />
+          {/* Dark overlays */}
+          <div className="absolute inset-0 bg-brand-dark/82" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/50 via-brand-dark/30 to-brand-dark" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-transparent to-brand-dark/80" />
+          {/* Red center glow matching logo */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-red/10 rounded-full blur-3xl" />
         </div>
 
-        {/* === Hero Content === */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 pt-14 pb-12 flex flex-col items-center text-center">
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-10 flex flex-col items-center text-center">
 
-          {/* Top pill badge */}
-          <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-red/40 rounded-full px-5 py-2 mb-10">
+          {/* Top badge */}
+          <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-red/40 rounded-full px-5 py-2 mb-8 animate-fade-in">
             <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
             <span className="text-brand-gold font-bold tracking-[0.25em] text-xs uppercase">Chennai's Finest Street Food</span>
           </div>
 
-          {/* === LOGO — full wide, on white pill, with glow === */}
-          <div className="relative mb-8 animate-bounce-in">
-            {/* Glow behind logo */}
-            <div className="absolute -inset-6 bg-brand-red/20 rounded-3xl blur-2xl" />
-            <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/30 via-brand-gold/20 to-brand-red/30 rounded-2xl blur-lg" />
-            {/* White background pill for logo */}
-            <div className="relative bg-white rounded-2xl px-8 py-5 shadow-2xl shadow-brand-red/50">
-              <img
-                src="/logo.png"
-                alt="Freddan Fully Loaded"
-                className="h-28 md:h-36 w-auto object-contain"
-              />
-            </div>
+          {/* ★ LOGO — black bg blends into dark site, red glow effect ★ */}
+          <div className="relative mb-4 animate-bounce-in">
+            {/* Glow layers matching the logo's red neon effect */}
+            <div className="absolute -inset-8 bg-brand-red/15 rounded-full blur-3xl" />
+            <div className="absolute -inset-4 bg-brand-red/10 rounded-3xl blur-xl" />
+            <img
+              src="/logo.png"
+              alt="Freddan Fully Loaded"
+              className="relative h-44 md:h-60 w-auto object-contain drop-shadow-2xl"
+              style={{ filter: 'drop-shadow(0 0 30px rgba(200,16,46,0.6)) drop-shadow(0 0 60px rgba(200,16,46,0.3))' }}
+            />
           </div>
 
-          {/* Tagline under logo */}
+          {/* Tagline */}
           <p className="text-gray-300 text-base md:text-lg font-semibold tracking-wide mb-6 max-w-xl">
-            West Mambalam's go-to spot for <span className="text-brand-gold">crispy chicken</span>, <span className="text-brand-gold">loaded fries</span>, juicy burgers & refreshing drinks
+            West Mambalam's go-to spot for <span className="text-brand-gold">crispy chicken</span>,{' '}
+            <span className="text-brand-gold">loaded fries</span>, juicy burgers & refreshing drinks
           </p>
 
           {/* Food tags */}
@@ -124,17 +115,20 @@ export default function CustomerHome() {
               { icon: '🥟', label: 'Momos' },
               { icon: '🌯', label: 'Wraps' },
             ].map(tag => (
-              <span key={tag.label} className="bg-white/8 backdrop-blur border border-white/10 text-gray-200 text-sm font-semibold px-4 py-1.5 rounded-full hover:border-brand-red/40 hover:text-white transition-colors">
+              <span
+                key={tag.label}
+                className="bg-white/6 backdrop-blur border border-white/10 text-gray-200 text-sm font-semibold px-4 py-1.5 rounded-full hover:border-brand-red/50 hover:text-white transition-colors"
+              >
                 {tag.icon} {tag.label}
               </span>
             ))}
           </div>
 
-          {/* Stats row */}
-          <div className="flex items-center justify-center gap-8 md:gap-20 mb-10">
+          {/* Stats */}
+          <div className="flex items-center justify-center gap-10 md:gap-20 mb-9">
             {[
               { value: '35+', label: 'Menu Items' },
-              { value: '⭐ 4.8', label: 'Google Rating' },
+              { value: '⭐ 4.8', label: 'Rating' },
               { value: '🔥 Hot', label: 'Always Fresh' },
             ].map(({ value, label }) => (
               <div key={label} className="text-center">
@@ -154,8 +148,7 @@ export default function CustomerHome() {
             </a>
             <a
               href="https://maps.google.com/?q=Freddan+Fully+Loaded+West+Mambalam+Chennai"
-              target="_blank"
-              rel="noreferrer"
+              target="_blank" rel="noreferrer"
               className="border-2 border-gray-600 bg-white/5 backdrop-blur text-gray-200 hover:border-brand-gold hover:text-brand-gold font-bold px-10 py-4 rounded-full text-lg transition-all flex items-center gap-2"
             >
               <MapPin size={18} /> Find Us
@@ -176,26 +169,19 @@ export default function CustomerHome() {
           </div>
         </div>
 
-        {/* === Food image strip at base of hero === */}
+        {/* Food image strip */}
         <div className="relative z-10 flex overflow-hidden" style={{ height: '150px' }}>
           {FOOD_IMAGES.map((src, i) => (
             <div key={i} className="flex-1 relative overflow-hidden group cursor-pointer">
-              <img
-                src={src}
-                alt="food"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
+              <img src={src} alt="food" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
-              {/* Red line at top of strip */}
-              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-red/60 to-transparent" />
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-red/50 to-transparent" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* ═══════════════════════════════
-          CATEGORY FILTER BAR
-      ═══════════════════════════════ */}
+      {/* ═══════════ CATEGORY FILTER ═══════════ */}
       <div id="menu" className="sticky top-16 z-40 bg-brand-dark/96 backdrop-blur-md border-b border-brand-smoke">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
@@ -217,9 +203,7 @@ export default function CustomerHome() {
         </div>
       </div>
 
-      {/* ═══════════════════════════════
-          MENU GRID
-      ═══════════════════════════════ */}
+      {/* ═══════════ MENU GRID ═══════════ */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -256,9 +240,7 @@ export default function CustomerHome() {
         )}
       </div>
 
-      {/* ═══════════════════════════════
-          FLOATING CART BUTTON
-      ═══════════════════════════════ */}
+      {/* ═══════════ FLOATING CART ═══════════ */}
       {totalItems > 0 && (
         <div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4 animate-slide-up">
           <Link
@@ -267,9 +249,7 @@ export default function CustomerHome() {
           >
             <div className="flex items-center gap-2">
               <ShoppingCart size={20} />
-              <span className="bg-white text-brand-red text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
-                {totalItems}
-              </span>
+              <span className="bg-white text-brand-red text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">{totalItems}</span>
               <span className="font-bold tracking-wide">View Cart</span>
             </div>
             <span className="font-display text-xl tracking-wider">₹{totalAmount.toFixed(0)}</span>
@@ -277,15 +257,15 @@ export default function CustomerHome() {
         </div>
       )}
 
-      {/* ═══════════════════════════════
-          FOOTER
-      ═══════════════════════════════ */}
+      {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-brand-smoke mt-8 py-12 bg-brand-charcoal">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          {/* Logo in footer */}
-          <div className="inline-block bg-white rounded-xl px-6 py-3 mb-5 shadow-lg shadow-brand-red/20">
-            <img src="/logo.png" alt="Freddan Fully Loaded" className="h-14 w-auto object-contain" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="Freddan Fully Loaded"
+            className="h-24 w-auto object-contain mx-auto mb-4"
+            style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.5))' }}
+          />
           <p className="text-gray-400 text-sm max-w-sm mx-auto mb-2 leading-relaxed">
             Old No 74, New No 20, Brindavan St,<br />
             near Duraiswamy Subway, West Mambalam,<br />
@@ -293,8 +273,7 @@ export default function CustomerHome() {
           </p>
           <a
             href="https://maps.google.com/?q=Freddan+Fully+Loaded+West+Mambalam+Chennai"
-            target="_blank"
-            rel="noreferrer"
+            target="_blank" rel="noreferrer"
             className="text-brand-gold hover:underline text-sm inline-flex items-center gap-1 mt-1"
           >
             <MapPin size={13} /> Get Directions on Google Maps
