@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ShoppingCart, MapPin, Phone } from 'lucide-react'
+import { ShoppingCart, MapPin, Phone, ChevronDown } from 'lucide-react'
 import Navbar from '../components/shared/Navbar'
 import MenuCard from '../components/customer/MenuCard'
 import { getMenu } from '../utils/api'
@@ -16,15 +16,6 @@ const CATEGORY_EMOJIS = {
   'LOADED FRIES': '🍟', 'MOMOS': '🥟', 'FRIES BURRITO': '🌯',
   'ROLLS & WRAPS': '🫔', "SIZZLIN' QUESADILLAS": '🫕', 'MAGGIE BOWL MADNESS': '🍜'
 }
-
-const FOOD_IMAGES = [
-  'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=85',
-  'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&q=85',
-  'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=85',
-  'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&q=85',
-  'https://images.unsplash.com/photo-1598182198343-53c13f4e1a1f?w=600&q=85',
-  'https://images.unsplash.com/photo-1619881590738-a111d176d906?w=600&q=85',
-]
 
 export default function CustomerHome() {
   const [menu, setMenu] = useState([])
@@ -55,133 +46,94 @@ export default function CustomerHome() {
     <div className="min-h-screen bg-brand-dark">
       <Navbar />
 
-      {/* ═══════════ HERO ═══════════ */}
-      <div className="relative pt-16 overflow-hidden">
+      {/* ═══════════════════════════════════════
+          FULL SCREEN HERO — burger hero image
+      ═══════════════════════════════════════ */}
+      <div className="relative pt-16">
 
-        {/* Full bleed food photo mosaic background */}
-        <div className="absolute inset-0 z-0">
-          <div className="grid grid-cols-3 grid-rows-2 h-full">
-            {FOOD_IMAGES.map((src, i) => (
-              <div key={i} className="overflow-hidden">
-                <img src={src} alt="" className="w-full h-full object-cover" loading="eager" />
-              </div>
-            ))}
-          </div>
-          {/* Dark overlays */}
-          <div className="absolute inset-0 bg-brand-dark/82" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/50 via-brand-dark/30 to-brand-dark" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-transparent to-brand-dark/80" />
-          {/* Red center glow matching logo */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-red/10 rounded-full blur-3xl" />
-        </div>
+        {/* Full screen hero image */}
+        <div
+          className="relative w-full flex items-center justify-center overflow-hidden"
+          style={{ minHeight: '92vh' }}
+        >
+          {/* THE HERO IMAGE — full bleed */}
+          <img
+            src="/hero.jpg"
+            alt="Freddan Fully Loaded"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-10 flex flex-col items-center text-center">
+          {/* Gradient overlays — top + bottom fade to dark */}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-transparent to-brand-dark" />
 
-          {/* Top badge */}
-          <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-red/40 rounded-full px-5 py-2 mb-8 animate-fade-in">
-            <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
-            <span className="text-brand-gold font-bold tracking-[0.25em] text-xs uppercase">Chennai's Finest Street Food</span>
-          </div>
+          {/* Very subtle dark center tint so text is readable */}
+          <div className="absolute inset-0 bg-brand-dark/20" />
 
-          {/* ★ LOGO — black bg blends into dark site, red glow effect ★ */}
-          <div className="relative mb-4 animate-bounce-in">
-            {/* Glow layers matching the logo's red neon effect */}
-            <div className="absolute -inset-8 bg-brand-red/15 rounded-full blur-3xl" />
-            <div className="absolute -inset-4 bg-brand-red/10 rounded-3xl blur-xl" />
-            <img
-              src="/logo.png"
-              alt="Freddan Fully Loaded"
-              className="relative h-44 md:h-60 w-auto object-contain drop-shadow-2xl"
-              style={{ filter: 'drop-shadow(0 0 30px rgba(200,16,46,0.6)) drop-shadow(0 0 60px rgba(200,16,46,0.3))' }}
-            />
-          </div>
+          {/* Hero text content — sits over image */}
+          <div className="relative z-10 text-center px-4 flex flex-col items-center justify-end h-full pb-20 pt-32"
+            style={{ minHeight: '92vh' }}>
 
-          {/* Tagline */}
-          <p className="text-gray-300 text-base md:text-lg font-semibold tracking-wide mb-6 max-w-xl">
-            West Mambalam's go-to spot for <span className="text-brand-gold">crispy chicken</span>,{' '}
-            <span className="text-brand-gold">loaded fries</span>, juicy burgers & refreshing drinks
-          </p>
-
-          {/* Food tags */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-            {[
-              { icon: '🔥', label: 'Crispy Chicken' },
-              { icon: '🍟', label: 'Loaded Fries' },
-              { icon: '🍔', label: 'Burgers' },
-              { icon: '🦐', label: 'Prawn Bites' },
-              { icon: '🥤', label: 'Mojitos' },
-              { icon: '🥛', label: 'Milkshakes' },
-              { icon: '🥟', label: 'Momos' },
-              { icon: '🌯', label: 'Wraps' },
-            ].map(tag => (
-              <span
-                key={tag.label}
-                className="bg-white/6 backdrop-blur border border-white/10 text-gray-200 text-sm font-semibold px-4 py-1.5 rounded-full hover:border-brand-red/50 hover:text-white transition-colors"
-              >
-                {tag.icon} {tag.label}
-              </span>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-10 md:gap-20 mb-9">
-            {[
-              { value: '35+', label: 'Menu Items' },
-              { value: '⭐ 4.8', label: 'Rating' },
-              { value: '🔥 Hot', label: 'Always Fresh' },
-            ].map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <div className="font-display text-2xl md:text-3xl text-brand-gold leading-none">{value}</div>
-                <div className="text-gray-500 text-xs font-bold tracking-widest uppercase mt-1.5">{label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <a
-              href="#menu"
-              className="btn-primary px-10 py-4 rounded-full text-lg flex items-center gap-2 shadow-xl shadow-brand-red/40 hover:scale-105 transition-transform"
-            >
-              🍗 Order Now
-            </a>
-            <a
-              href="https://maps.google.com/?q=Freddan+Fully+Loaded+West+Mambalam+Chennai"
-              target="_blank" rel="noreferrer"
-              className="border-2 border-gray-600 bg-white/5 backdrop-blur text-gray-200 hover:border-brand-gold hover:text-brand-gold font-bold px-10 py-4 rounded-full text-lg transition-all flex items-center gap-2"
-            >
-              <MapPin size={18} /> Find Us
-            </a>
-          </div>
-
-          {/* Location + phone */}
-          <div className="flex items-center justify-center gap-5 text-gray-500 text-sm flex-wrap">
-            <span className="flex items-center gap-1.5">
-              <MapPin size={13} className="text-brand-red flex-shrink-0" />
-              West Mambalam, Chennai
-            </span>
-            <span className="text-gray-700 hidden sm:inline">•</span>
-            <a href="tel:8608227548" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
-              <Phone size={13} className="text-brand-red flex-shrink-0" />
-              +91 86082 27548
-            </a>
-          </div>
-        </div>
-
-        {/* Food image strip */}
-        <div className="relative z-10 flex overflow-hidden" style={{ height: '150px' }}>
-          {FOOD_IMAGES.map((src, i) => (
-            <div key={i} className="flex-1 relative overflow-hidden group cursor-pointer">
-              <img src={src} alt="food" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
-              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-red/50 to-transparent" />
+            {/* Live badge */}
+            <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur border border-brand-red/50 rounded-full px-5 py-2 mb-6">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-white font-bold tracking-[0.2em] text-xs uppercase">Now Open • West Mambalam, Chennai</span>
             </div>
-          ))}
+
+            {/* Tagline */}
+            <h2 className="font-display text-3xl md:text-5xl text-white tracking-wider mb-3 drop-shadow-2xl"
+              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
+              Chennai's Most <span className="text-brand-gold">Loaded</span> Experience
+            </h2>
+
+            <p className="text-gray-200 text-base md:text-lg font-semibold mb-8 max-w-lg drop-shadow-lg"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+              🔥 Crispy Chicken &nbsp;•&nbsp; 🍟 Loaded Fries &nbsp;•&nbsp; 🍔 Burgers &nbsp;•&nbsp; 🥤 Drinks
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+              <a
+                href="#menu"
+                className="btn-primary px-10 py-4 rounded-full text-lg flex items-center gap-2 shadow-2xl shadow-brand-red/50 hover:scale-105 transition-transform"
+              >
+                🍗 Order Now
+              </a>
+              <a
+                href="tel:8608227548"
+                className="border-2 border-white/40 bg-black/40 backdrop-blur text-white hover:border-brand-gold hover:text-brand-gold font-bold px-10 py-4 rounded-full text-lg transition-all flex items-center gap-2"
+              >
+                <Phone size={18} /> Call Us
+              </a>
+            </div>
+
+            {/* Stats row */}
+            <div className="flex items-center justify-center gap-8 md:gap-16 mb-8">
+              {[
+                { value: '35+', label: 'Menu Items' },
+                { value: '⭐ 4.8', label: 'Rating' },
+                { value: '🔥 Hot', label: 'Always Fresh' },
+              ].map(({ value, label }) => (
+                <div key={label} className="text-center">
+                  <div className="font-display text-2xl text-brand-gold drop-shadow-lg">{value}</div>
+                  <div className="text-gray-300 text-xs font-bold tracking-widest uppercase mt-1"
+                    style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>{label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll indicator */}
+            <a href="#menu" className="flex flex-col items-center gap-1 text-gray-400 hover:text-brand-gold transition-colors animate-bounce">
+              <span className="text-xs font-semibold tracking-widest uppercase">Explore Menu</span>
+              <ChevronDown size={20} />
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* ═══════════ CATEGORY FILTER ═══════════ */}
+      {/* ═══════════════════════════════════════
+          CATEGORY FILTER BAR
+      ═══════════════════════════════════════ */}
       <div id="menu" className="sticky top-16 z-40 bg-brand-dark/96 backdrop-blur-md border-b border-brand-smoke">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
@@ -203,7 +155,9 @@ export default function CustomerHome() {
         </div>
       </div>
 
-      {/* ═══════════ MENU GRID ═══════════ */}
+      {/* ═══════════════════════════════════════
+          MENU GRID
+      ═══════════════════════════════════════ */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -240,7 +194,9 @@ export default function CustomerHome() {
         )}
       </div>
 
-      {/* ═══════════ FLOATING CART ═══════════ */}
+      {/* ═══════════════════════════════════════
+          FLOATING CART
+      ═══════════════════════════════════════ */}
       {totalItems > 0 && (
         <div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4 animate-slide-up">
           <Link
@@ -257,13 +213,15 @@ export default function CustomerHome() {
         </div>
       )}
 
-      {/* ═══════════ FOOTER ═══════════ */}
+      {/* ═══════════════════════════════════════
+          FOOTER
+      ═══════════════════════════════════════ */}
       <footer className="border-t border-brand-smoke mt-8 py-12 bg-brand-charcoal">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <img
             src="/logo.png"
             alt="Freddan Fully Loaded"
-            className="h-24 w-auto object-contain mx-auto mb-4"
+            className="h-20 w-auto object-contain mx-auto mb-4"
             style={{ filter: 'drop-shadow(0 0 20px rgba(200,16,46,0.5))' }}
           />
           <p className="text-gray-400 text-sm max-w-sm mx-auto mb-2 leading-relaxed">
