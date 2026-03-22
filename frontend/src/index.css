@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0A0A0A;
+    color: #F5F5F5;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #C8102E #1A1A1A;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #1A1A1A;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #C8102E;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-red text-white font-bold px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-200 active:scale-95 font-body tracking-wide;
+  }
+
+  .btn-gold {
+    @apply bg-brand-gold text-brand-dark font-bold px-6 py-3 rounded-lg hover:bg-yellow-400 transition-all duration-200 active:scale-95 font-body tracking-wide;
+  }
+
+  .btn-outline {
+    @apply border border-brand-red text-brand-red font-bold px-6 py-3 rounded-lg hover:bg-brand-red hover:text-white transition-all duration-200 active:scale-95 font-body tracking-wide;
+  }
+
+  .card {
+    @apply bg-brand-charcoal rounded-xl border border-brand-smoke overflow-hidden hover:border-brand-red transition-all duration-300;
+  }
+
+  .badge {
+    @apply text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider;
+  }
+
+  .input-field {
+    @apply w-full bg-brand-smoke border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-red focus:outline-none transition-colors font-body;
+  }
+
+  .section-title {
+    @apply font-display text-4xl text-white tracking-wider;
+  }
+}

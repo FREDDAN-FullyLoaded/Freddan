@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: freddan-backend
+    env: java
+    buildCommand: cd backend && mvn clean package -DskipTests
+    startCommand: java -jar backend/target/freddan-backend-1.0.0.jar
+    envVars:
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: FAST2SMS_API_KEY
+        sync: false
+      - key: SHOP_PHONE
+        value: "8608227548"
